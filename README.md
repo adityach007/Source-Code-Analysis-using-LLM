@@ -43,29 +43,11 @@ open up localhost:
 ```
 
 
-### Techstack Used:
-
-- Python
-- LangChain
-- Flask
-- OpenAI
-- GPT 3
-- ChoromaDB
-
-
 # Explanation:
 
 # GitHub Repository QA System
 
 This project is a powerful integration of multiple technologies and tools for analyzing and interacting with GitHub repositories. It allows users to input a GitHub repository URL and ask questions about the repository. The system processes the repository's content and provides relevant answers based on the repository's data.
-
-## Features
-
-- **Code Review Assistance**
-- **Developer Documentation Generation**
-- **Onboarding New Developers**
-- **Enhanced Codebase Search**
-- **Legacy Code Understanding**
 
 ## Technologies Used
 
