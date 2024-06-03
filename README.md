@@ -51,3 +51,92 @@ open up localhost:
 - OpenAI
 - GPT 3
 - ChoromaDB
+
+
+# Explanation:
+
+# GitHub Repository QA System
+
+This project is a powerful integration of multiple technologies and tools for analyzing and interacting with GitHub repositories. It allows users to input a GitHub repository URL and ask questions about the repository. The system processes the repository's content and provides relevant answers based on the repository's data.
+
+## Features
+
+- **Code Review Assistance**
+- **Developer Documentation Generation**
+- **Onboarding New Developers**
+- **Enhanced Codebase Search**
+- **Legacy Code Understanding**
+
+## Technologies Used
+
+- **Flask**: Web framework for serving the user interface and handling requests.
+- **LangChain**: Framework for combining language models with a memory system and a retriever to provide coherent answers.
+- **Chroma**: Vector database for storing and retrieving embeddings.
+- **OpenAI Embeddings**: Pre-trained embeddings from OpenAI for document representation.
+- **GitPython**: Library for interacting with Git repositories.
+
+## User Interface
+
+The user interface consists of a simple HTML page (`index.html`) served by Flask. The user can input a GitHub repository URL and ask questions about the repository.
+
+## Flask Server (`app.py`)
+
+The Flask server handles user requests and serves the interface. It includes two main routes:
+
+- `/chatbot`: Handles POST requests with a GitHub repository URL.
+- `/get`: Handles POST requests with user messages for the chatbot.
+
+### Chatbot Route (`/chatbot`)
+
+1. **Accepts Repository URL**: The user submits a GitHub repository URL.
+2. **Calls `repo_ingestion`**: The `repo_ingestion` function in `helper.py` is called to clone the repository.
+3. **Calls `store_index.py`**: This script processes the cloned repository to prepare it for question-answering by performing the following steps:
+    - **Load Repo Files**: Uses `GenericLoader` to load Python files from the cloned repository.
+    - **Text Splitter**: Splits the loaded files into smaller chunks for better processing.
+    - **Load Embeddings**: Loads pre-trained embeddings from OpenAI.
+    - **Store Vectors**: Stores the processed vectors in a vector database (Chroma).
+
+### Get Route (`/get`)
+
+1. **Accepts User Message**: The user submits a question about the repository.
+2. **Processes Message with QA Chain**: Uses the `ConversationalRetrievalChain` to process the user's question. This chain retrieves relevant information from the vector database and generates an answer.
+
+## Helper Functions (`helper.py`)
+
+- **`repo_ingestion`**: Clones the provided GitHub repository into a local directory.
+- **`load_repo`**: Loads the cloned repository's files into documents.
+- **`text_splitter`**: Splits the loaded documents into smaller chunks.
+- **`load_embedding`**: Loads pre-trained embeddings for the documents.
+
+## Store Index Script (`store_index.py`)
+
+This script prepares the repository files for the QA system:
+
+1. Loads the repository files.
+2. Splits the text into manageable chunks.
+3. Loads embeddings for the chunks.
+4. Stores the embeddings in a vector database (Chroma) for later retrieval during QA.
+
+## Conversational Retrieval Chain
+
+This component of LangChain combines language models with a memory system and a retriever to provide coherent answers based on the repository's content.
+
+## Workflow
+
+### User Interaction
+
+1. User opens the web interface and submits a GitHub repository URL.
+2. User asks questions about the repository.
+
+### Repository Processing
+
+1. Flask server handles the URL submission, calls `repo_ingestion` to clone the repository, and runs `store_index.py` to prepare the data.
+2. `store_index.py` loads, splits, and embeds the repository's content, storing it in a vector database.
+
+### Question Answering
+
+1. Flask server handles user questions, using the QA chain to retrieve and generate answers based on the processed repository data.
+
+### Response
+
+The system returns the answer to the user's question, displayed in the web interface.
