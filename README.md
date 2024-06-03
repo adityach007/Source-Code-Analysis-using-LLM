@@ -129,7 +129,7 @@ This component of LangChain combines language models with a memory system and a 
 
 The system returns the answer to the user's question, displayed in the web interface.
 
-## Future Uses
+# Future Uses
 
 ### Code Review Assistance
 
