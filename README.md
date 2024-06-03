@@ -57,6 +57,11 @@ This project is a powerful integration of multiple technologies and tools for an
 - **OpenAI Embeddings**: Pre-trained embeddings from OpenAI for document representation.
 - **GitPython**: Library for interacting with Git repositories.
 
+
+![Uploading Screenshot 2024-06-03 194818.png…]()
+
+
+
 ## User Interface
 
 The user interface consists of a simple HTML page (`index.html`) served by Flask. The user can input a GitHub repository URL and ask questions about the repository.
