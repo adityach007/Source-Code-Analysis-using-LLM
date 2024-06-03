@@ -155,3 +155,7 @@ The system returns the answer to the user's question, displayed in the web inter
 
 - **Refactoring Support**: Assist in understanding and refactoring legacy code by providing summaries, detecting code smells, and suggesting modern alternatives.
 - **Migration Assistance**: Help in migrating codebases to new technologies or frameworks by identifying dependencies and suggesting migration paths.
+
+## Support
+
+If you like this project, please follow and give a star ⭐!
